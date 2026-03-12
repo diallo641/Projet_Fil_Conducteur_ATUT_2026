@@ -1,0 +1,116 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: airflow_postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  airflow-webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile-airflow
+    container_name: airflow_webserver
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: ${AIRFLOW_EXECUTOR}
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW_LOAD_EXAMPLES}
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/tests_unitaires:/opt/airflow/tests_unitaires
+      - ./spark/jobs:/opt/spark/jobs
+      - ./spark/data:/opt/spark/data
+      - ./spark/libs:/opt/spark/libs
+      - ./spark/tests_unitaires:/opt/spark/tests_unitaires
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "
+      airflow db init &&
+      airflow users create
+      --username admin
+      --password admin
+      --firstname Admin
+      --lastname User
+      --role Admin
+      --email admin@example.com || true &&
+      airflow webserver
+      "
+
+  airflow-scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile-airflow
+    container_name: airflow_scheduler
+    depends_on:
+      - airflow-webserver
+      - postgres
+    env_file:
+      - .env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: ${AIRFLOW_EXECUTOR}
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+      AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW_LOAD_EXAMPLES}
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./spark/jobs:/opt/spark/jobs
+      - ./spark/data:/opt/spark/data
+      - ./spark/libs:/opt/spark/libs
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: airflow scheduler
+
+  spark:
+    image: apache/spark:3.5.1
+    container_name: spark
+    hostname: spark
+    env_file:
+      - .env
+    environment:
+      SPARK_MODE: local
+    volumes:
+      - ./spark/jobs:/opt/spark/jobs
+      - ./spark/data:/opt/spark/data
+      - ./spark/libs:/opt/spark/libs
+      - ./spark/tests_unitaires:/opt/spark/tests_unitaires
+      - ./output:/opt/spark/output
+    working_dir: /opt/spark
+    entrypoint: ["/bin/bash", "-c", "tail -f /dev/null"]
+    ports:
+      - "4040:4040"
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    env_file:
+      - .env
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY}
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+volumes:
+  postgres_db:
+  minio_data:
