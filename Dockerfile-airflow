@@ -1,0 +1,34 @@
+FROM apache/airflow:2.8.1
+
+USER root
+
+# Java + Docker en ligne de commande
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk wget curl gnupg ca-certificates lsb-release && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV PATH="$JAVA_HOME/bin:$PATH"
+
+RUN mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | \
+    gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+      https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
+      > /etc/apt/sources.list.d/docker.list && \
+    apt-get update && \
+    apt-get install -y docker-ce-cli && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+# Installer Spark, Airflow provider, pytest à cause des incompatibilités
+COPY requirements-dev.txt /requirements-dev.txt
+RUN pip install --no-cache-dir pyspark apache-airflow-providers-apache-spark -r /requirements-dev.txt
+
+# Copier le dossier DAGs
+COPY ./dags /opt/airflow/dags
+
+# Copier tests unitaires
+COPY ./airflow/tests_unitaires /opt/airflow/tests_unitaires
