@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:14
-    container_name: airflow_postgres
+    container_name: airflow_postgres_final
     env_file:
       - .env
     environment:
@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-airflow
-    container_name: airflow_webserver
+    container_name: airflow_webserver_final
     depends_on:
       - postgres
     env_file:
@@ -56,7 +56,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-airflow
-    container_name: airflow_scheduler
+    container_name: airflow_scheduler_final
     depends_on:
       - airflow-webserver
       - postgres
@@ -79,7 +79,7 @@ services:
 
   spark:
     image: apache/spark:3.5.1
-    container_name: spark
+    container_name: spark_final
     hostname: spark
     env_file:
       - .env
@@ -98,7 +98,7 @@ services:
 
   minio:
     image: minio/minio
-    container_name: minio
+    container_name: minio_final
     env_file:
       - .env
     command: server /data --console-address ":9001"

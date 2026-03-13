@@ -28,7 +28,7 @@ COPY requirements-dev.txt /requirements-dev.txt
 RUN pip install --no-cache-dir pyspark apache-airflow-providers-apache-spark -r /requirements-dev.txt
 
 # Copier le dossier DAGs
-COPY ./dags /opt/airflow/dags
+COPY ./airflow/dags /opt/airflow/dags
 
 # Copier tests unitaires
 COPY ./airflow/tests_unitaires /opt/airflow/tests_unitaires
