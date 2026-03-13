@@ -1,44 +1,55 @@
+#Imoratation des bibliothéques
 import requests
+from bs4 import BeautifulSoup
 import pandas as pd
 import os
 
 
-# Création du dossier
-data_dir = "../spark/data/api_books/"
-os.makedirs(data_dir, exist_ok=True)
+# URL de départ
+#base_site = "https://books.toscrape.com/"
 
-# ----------------------------
-# Appel API OpenLibrary
-# ----------------------------
-# Exemple: récupérer des livres sur "Python"
-url = "https://openlibrary.org/search.json?q=python&limit=50"
-response = requests.get(url)
-data = response.json()
+livres = []
+# Scraper les pages 10 pages
+for page in range(1, 11):
+    url = f"https://books.toscrape.com/catalogue/page-{page}.html"
+    response = requests.get(url)
+    response.encoding = 'utf-8'
+    soup = BeautifulSoup(response.text, "html.parser")
+    
+    for book in soup.select("article.product_pod"):
+        title = book.h3.a["title"]
+        price = book.select_one("p.price_color").text
+        stock = book.select_one("p.instock.availability").text.strip()
+        
+        # Colonnes du fichiers csv ajouté métadonnée source
+        livres.append({
+            "ISBN": None,                 
+            "title": title,
+            "author": None,               
+            "price": price,
+            "category": None,             
+            "availability": stock,
+            "source": "scraping"
+        })
 
-books = []
-for doc in data.get('docs', []):
-    books.append({
-        "ISBN": doc.get("isbn")[0] if doc.get("isbn") else None,     # ISBN si disponible
-        "title": doc.get("title"),
-        "author": ", ".join(doc.get("author_name", [])) if doc.get("author_name") else None,
-        "price": None,           # Pas disponible côté API
-        "category": None,        # Pas disponible côté API
-        "availability": None,    # Pas disponible côté API
-        "source": "API openlibrary.org"
-    })
+# Convertir en DataFrame
+df = pd.DataFrame(livres)
 
-# ----------------------------
-# Convertir en DataFrame Pandas
-# ----------------------------
-df = pd.DataFrame(books)
 
-# ----------------------------
-# Sauvegarde CSV prêt pour Spark
-# ----------------------------
-file_path = os.path.join(data_dir, "api_books.csv")
-df.to_csv(file_path, index=False)
+# Nettoyage des colonnes
+#df["price"] = df["price"].str.replace(r"[^0-9.]", "", regex=True).astype(float)
+#df["availability"] = df["availability"].str.strip()
 
-print(f"✅ Extraction API terminée, fichier créé : {file_path}")
-print("📊 Aperçu des données :")
+
+# Créer le dossier data si nécessaire
+os.makedirs("../data", exist_ok=True)
+# Sauvegarde avec le type CSV prêt pour Spark
+sortie = "../spark/data/livres_scraping.csv"
+df.to_csv(sortie, index=False)
+print(f"Scraping terminé. Fichier enregistré dans {sortie}")
+
+
+# Vérification du contenu
 print(df.head())
 print(df.columns.tolist())
+print("📦 Nombre total de lignes :", len(df))
