@@ -87,7 +87,7 @@ def run_transformation():
     logger.info(f"✅ Suppression des doublons par ISBN/source, nombre de lignes après : {df.count()}")
 
    
-    # Ajout d'ajout
+    # Ajout date d'ajout
     df = df.withColumn("date_ajout", current_date())
 
    
