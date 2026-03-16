@@ -57,5 +57,4 @@ def run_extraction(local_data_dir="/opt/spark/data", minio_bucket="s3a://extract
 
 # Utilisation  de la fonction pour exécuter dans le  fichier test
 if __name__ == "__main__":
-    # Pour PowerShell Windows : chcp 65001 pour UTF-8 si nécessaire
     run_extraction()
