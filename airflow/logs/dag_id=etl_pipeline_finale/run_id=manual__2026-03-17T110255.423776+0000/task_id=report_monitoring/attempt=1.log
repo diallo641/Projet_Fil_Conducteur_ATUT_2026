@@ -1,0 +1,18 @@
+[2026-03-17T11:07:35.863+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_finale.report_monitoring manual__2026-03-17T11:02:55.423776+00:00 [queued]>
+[2026-03-17T11:07:35.888+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_finale.report_monitoring manual__2026-03-17T11:02:55.423776+00:00 [queued]>
+[2026-03-17T11:07:35.889+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-17T11:07:35.938+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): report_monitoring> on 2026-03-17 11:02:55.423776+00:00
+[2026-03-17T11:07:35.950+0000] {standard_task_runner.py:60} INFO - Started process 1852 to run task
+[2026-03-17T11:07:35.959+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_finale', 'report_monitoring', 'manual__2026-03-17T11:02:55.423776+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmp7n5g3dcm']
+[2026-03-17T11:07:35.963+0000] {standard_task_runner.py:88} INFO - Job 30: Subtask report_monitoring
+[2026-03-17T11:07:36.122+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline_finale.report_monitoring manual__2026-03-17T11:02:55.423776+00:00 [running]> on host 57dd1bcf62af
+[2026-03-17T11:07:36.371+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='etl_pipeline_finale' AIRFLOW_CTX_TASK_ID='report_monitoring' AIRFLOW_CTX_EXECUTION_DATE='2026-03-17T11:02:55.423776+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-17T11:02:55.423776+00:00'
+[2026-03-17T11:07:36.461+0000] {ETL_pipeline.py:30} INFO - 🚀 Monitoring global ETL Livres
+[2026-03-17T11:07:36.462+0000] {ETL_pipeline.py:33} INFO - 📦 extract_data | état=success | durée=76.70s
+[2026-03-17T11:07:36.463+0000] {ETL_pipeline.py:40} INFO - ⚙️ transform_data | état=success | durée=107.94s
+[2026-03-17T11:07:36.466+0000] {ETL_pipeline.py:47} INFO - 📤 load_curated | état=success | durée=83.43s
+[2026-03-17T11:07:36.467+0000] {ETL_pipeline.py:55} INFO - ⏱️ Durée totale du pipeline : 276.34s
+[2026-03-17T11:07:36.468+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-17T11:07:36.499+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_pipeline_finale, task_id=report_monitoring, execution_date=20260317T110255, start_date=20260317T110735, end_date=20260317T110736
+[2026-03-17T11:07:36.615+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-17T11:07:36.656+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

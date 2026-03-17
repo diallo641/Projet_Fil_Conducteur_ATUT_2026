@@ -1,0 +1,18 @@
+[2026-03-17T10:33:25.927+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_finale.start_spark manual__2026-03-17T10:32:27.257261+00:00 [queued]>
+[2026-03-17T10:33:25.944+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_finale.start_spark manual__2026-03-17T10:32:27.257261+00:00 [queued]>
+[2026-03-17T10:33:25.945+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-17T10:33:25.988+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): start_spark> on 2026-03-17 10:32:27.257261+00:00
+[2026-03-17T10:33:25.994+0000] {standard_task_runner.py:60} INFO - Started process 1693 to run task
+[2026-03-17T10:33:25.998+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_finale', 'start_spark', 'manual__2026-03-17T10:32:27.257261+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpw58n79ym']
+[2026-03-17T10:33:26.002+0000] {standard_task_runner.py:88} INFO - Job 11: Subtask start_spark
+[2026-03-17T10:33:26.134+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline_finale.start_spark manual__2026-03-17T10:32:27.257261+00:00 [running]> on host 57dd1bcf62af
+[2026-03-17T10:33:26.440+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='etl_pipeline_finale' AIRFLOW_CTX_TASK_ID='start_spark' AIRFLOW_CTX_EXECUTION_DATE='2026-03-17T10:32:27.257261+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-17T10:32:27.257261+00:00'
+[2026-03-17T10:33:26.442+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-03-17T10:33:26.444+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'docker start spark || true']
+[2026-03-17T10:33:26.458+0000] {subprocess.py:86} INFO - Output:
+[2026-03-17T10:33:28.897+0000] {subprocess.py:93} INFO - Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint spark (34f2b59f7ee4ee926896251a4e89ef547e143249deaed688262443c4c2279267): Bind for 0.0.0.0:4040 failed: port is already allocated
+[2026-03-17T10:33:28.900+0000] {subprocess.py:93} INFO - failed to start containers: spark
+[2026-03-17T10:33:28.909+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-03-17T10:33:29.085+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_pipeline_finale, task_id=start_spark, execution_date=20260317T103227, start_date=20260317T103325, end_date=20260317T103329
+[2026-03-17T10:33:29.203+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-17T10:33:29.425+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

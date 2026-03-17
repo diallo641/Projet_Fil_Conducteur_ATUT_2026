@@ -1,0 +1,79 @@
+[2026-03-17T10:45:13.245+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_finale.extract_data manual__2026-03-17T10:45:11.907003+00:00 [queued]>
+[2026-03-17T10:45:13.287+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_finale.extract_data manual__2026-03-17T10:45:11.907003+00:00 [queued]>
+[2026-03-17T10:45:13.289+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-17T10:45:13.392+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): extract_data> on 2026-03-17 10:45:11.907003+00:00
+[2026-03-17T10:45:13.427+0000] {standard_task_runner.py:60} INFO - Started process 204 to run task
+[2026-03-17T10:45:13.445+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_finale', 'extract_data', 'manual__2026-03-17T10:45:11.907003+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpkqkhqqp4']
+[2026-03-17T10:45:13.459+0000] {standard_task_runner.py:88} INFO - Job 16: Subtask extract_data
+[2026-03-17T10:45:13.688+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline_finale.extract_data manual__2026-03-17T10:45:11.907003+00:00 [running]> on host 57dd1bcf62af
+[2026-03-17T10:45:14.116+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='etl_pipeline_finale' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2026-03-17T10:45:11.907003+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-17T10:45:11.907003+00:00'
+[2026-03-17T10:45:14.119+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-03-17T10:45:14.122+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python3 /opt/spark/jobs/extraction.py']
+[2026-03-17T10:45:14.150+0000] {subprocess.py:86} INFO - Output:
+[2026-03-17T10:45:22.108+0000] {subprocess.py:93} INFO - :: loading settings :: url = jar:file:/home/***/.local/lib/python3.8/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2026-03-17T10:45:22.379+0000] {subprocess.py:93} INFO - Ivy Default Cache set to: /home/***/.ivy2/cache
+[2026-03-17T10:45:22.381+0000] {subprocess.py:93} INFO - The jars for the packages stored in: /home/***/.ivy2/jars
+[2026-03-17T10:45:22.392+0000] {subprocess.py:93} INFO - org.apache.hadoop#hadoop-aws added as a dependency
+[2026-03-17T10:45:22.394+0000] {subprocess.py:93} INFO - com.amazonaws#aws-java-sdk-bundle added as a dependency
+[2026-03-17T10:45:22.396+0000] {subprocess.py:93} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-ce16a5f6-4964-4f92-ab07-7cd16618548d;1.0
+[2026-03-17T10:45:22.398+0000] {subprocess.py:93} INFO - 	confs: [default]
+[2026-03-17T10:45:22.884+0000] {subprocess.py:93} INFO - 	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+[2026-03-17T10:45:22.949+0000] {subprocess.py:93} INFO - 	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
+[2026-03-17T10:45:23.023+0000] {subprocess.py:93} INFO - 	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+[2026-03-17T10:45:23.081+0000] {subprocess.py:93} INFO - :: resolution report :: resolve 660ms :: artifacts dl 25ms
+[2026-03-17T10:45:23.083+0000] {subprocess.py:93} INFO - 	:: modules in use:
+[2026-03-17T10:45:23.084+0000] {subprocess.py:93} INFO - 	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
+[2026-03-17T10:45:23.086+0000] {subprocess.py:93} INFO - 	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+[2026-03-17T10:45:23.088+0000] {subprocess.py:93} INFO - 	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+[2026-03-17T10:45:23.089+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-17T10:45:23.092+0000] {subprocess.py:93} INFO - 	|                  |            modules            ||   artifacts   |
+[2026-03-17T10:45:23.094+0000] {subprocess.py:93} INFO - 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2026-03-17T10:45:23.096+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-17T10:45:23.097+0000] {subprocess.py:93} INFO - 	|      default     |   3   |   0   |   0   |   0   ||   3   |   0   |
+[2026-03-17T10:45:23.098+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-17T10:45:23.099+0000] {subprocess.py:93} INFO - :: retrieving :: org.apache.spark#spark-submit-parent-ce16a5f6-4964-4f92-ab07-7cd16618548d
+[2026-03-17T10:45:23.100+0000] {subprocess.py:93} INFO - 	confs: [default]
+[2026-03-17T10:45:23.111+0000] {subprocess.py:93} INFO - 	0 artifacts copied, 3 already retrieved (0kB/15ms)
+[2026-03-17T10:45:23.602+0000] {subprocess.py:93} INFO - 26/03/17 10:45:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-03-17T10:45:24.131+0000] {subprocess.py:93} INFO - Setting default log level to "WARN".
+[2026-03-17T10:45:24.133+0000] {subprocess.py:93} INFO - To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+[2026-03-17T10:45:45.686+0000] {subprocess.py:93} INFO - {"time": "2026-03-17 10:45:45,685", "level": "INFO", "message": "\ud83c\udf89 D\u00e9but de l'extraction des fichiers CSV vers MinIO", "module": "extraction"}
+[2026-03-17T10:46:06.481+0000] {subprocess.py:93} INFO - [Stage 0:>                                                          (0 + 1) / 1]                                                                                [Stage 1:>                                                          (0 + 5) / 5][Stage 1:===========>                                               (1 + 4) / 5][Stage 1:===============================================>           (4 + 1) / 5]                                                                                [Stage 2:>                                                          (0 + 5) / 5][Stage 2:===========>                                               (1 + 4) / 5]                                                                                {"time": "2026-03-17 10:46:06,479", "level": "INFO", "message": "\u2705 livres_externe_clean.csv lu : 271360 lignes", "module": "extraction"}
+[2026-03-17T10:46:18.962+0000] {subprocess.py:93} INFO - [Stage 6:>                                                          (0 + 1) / 1]                                                                                {"time": "2026-03-17 10:46:18,962", "level": "INFO", "message": "\ud83d\udce6 livres_externe_clean.csv charg\u00e9 dans MinIO : s3a://extraction/livres_externe_clean.csv (dur\u00e9e 11.53s)", "module": "extraction"}
+[2026-03-17T10:46:20.003+0000] {subprocess.py:93} INFO - {"time": "2026-03-17 10:46:20,003", "level": "INFO", "message": "\u2705 livres_scraping.csv lu : 200 lignes", "module": "extraction"}
+[2026-03-17T10:46:21.893+0000] {subprocess.py:93} INFO - [Stage 13:>                                                         (0 + 1) / 1]                                                                                {"time": "2026-03-17 10:46:21,892", "level": "INFO", "message": "\ud83d\udce6 livres_scraping.csv charg\u00e9 dans MinIO : s3a://extraction/livres_scraping.csv (dur\u00e9e 1.55s)", "module": "extraction"}
+[2026-03-17T10:46:23.476+0000] {subprocess.py:93} INFO - {"time": "2026-03-17 10:46:23,475", "level": "INFO", "message": "\u2705 api_livres.csv lu : 1000 lignes", "module": "extraction"}
+[2026-03-17T10:46:27.265+0000] {subprocess.py:93} INFO - [Stage 20:>                                                         (0 + 1) / 1]                                                                                {"time": "2026-03-17 10:46:27,265", "level": "INFO", "message": "\ud83d\udce6 api_livres.csv charg\u00e9 dans MinIO : s3a://extraction/api_livres.csv (dur\u00e9e 3.23s)", "module": "extraction"}
+[2026-03-17T10:46:27.945+0000] {subprocess.py:93} INFO - {"time": "2026-03-17 10:46:27,944", "level": "INFO", "message": "\ud83c\udf89 Tous les fichiers CSV ont \u00e9t\u00e9 charg\u00e9s dans le bucket MinIO.", "module": "extraction"}
+[2026-03-17T10:46:27.947+0000] {subprocess.py:93} INFO - {"time": "2026-03-17 10:46:27,945", "level": "INFO", "message": "{\"step\": \"run_extraction\", \"duration_sec\": 72.65791368484497}", "module": "etl_monitoring"}
+[2026-03-17T10:46:27.948+0000] {subprocess.py:93} INFO - +----------+--------------------+--------------------+-----+--------+------------+------+
+[2026-03-17T10:46:27.949+0000] {subprocess.py:93} INFO - |ISBN      |title               |author              |price|category|availability|source|
+[2026-03-17T10:46:27.951+0000] {subprocess.py:93} INFO - +----------+--------------------+--------------------+-----+--------+------------+------+
+[2026-03-17T10:46:27.952+0000] {subprocess.py:93} INFO - |0195153448|Classical Mythology |Mark P. O. Morford  |NULL |NULL    |NULL        |csv   |
+[2026-03-17T10:46:27.953+0000] {subprocess.py:93} INFO - |0002005018|Clara Callan        |Richard Bruce Wright|NULL |NULL    |NULL        |csv   |
+[2026-03-17T10:46:27.955+0000] {subprocess.py:93} INFO - |0060973129|Decision in Normandy|Carlo D'Este        |NULL |NULL    |NULL        |csv   |
+[2026-03-17T10:46:27.956+0000] {subprocess.py:93} INFO - +----------+--------------------+--------------------+-----+--------+------------+------+
+[2026-03-17T10:46:27.957+0000] {subprocess.py:93} INFO - only showing top 3 rows
+[2026-03-17T10:46:27.958+0000] {subprocess.py:93} INFO - 
+[2026-03-17T10:46:27.959+0000] {subprocess.py:93} INFO - +----+--------------------+------+------+--------+------------+--------+
+[2026-03-17T10:46:27.961+0000] {subprocess.py:93} INFO - |ISBN|title               |author|price |category|availability|source  |
+[2026-03-17T10:46:27.962+0000] {subprocess.py:93} INFO - +----+--------------------+------+------+--------+------------+--------+
+[2026-03-17T10:46:27.964+0000] {subprocess.py:93} INFO - |NULL|A Light in the Attic|NULL  |£51.77|NULL    |In stock    |scraping|
+[2026-03-17T10:46:27.965+0000] {subprocess.py:93} INFO - |NULL|Tipping the Velvet  |NULL  |£53.74|NULL    |In stock    |scraping|
+[2026-03-17T10:46:27.967+0000] {subprocess.py:93} INFO - |NULL|Soumission          |NULL  |£50.10|NULL    |In stock    |scraping|
+[2026-03-17T10:46:27.969+0000] {subprocess.py:93} INFO - +----+--------------------+------+------+--------+------------+--------+
+[2026-03-17T10:46:27.970+0000] {subprocess.py:93} INFO - only showing top 3 rows
+[2026-03-17T10:46:27.971+0000] {subprocess.py:93} INFO - 
+[2026-03-17T10:46:27.974+0000] {subprocess.py:93} INFO - +----+---------------+-----------------------+-----+--------+------------+-------------------+
+[2026-03-17T10:46:27.976+0000] {subprocess.py:93} INFO - |ISBN|title          |author                 |price|category|availability|source             |
+[2026-03-17T10:46:27.978+0000] {subprocess.py:93} INFO - +----+---------------+-----------------------+-----+--------+------------+-------------------+
+[2026-03-17T10:46:27.981+0000] {subprocess.py:93} INFO - |NULL|Metamorphoses  |Ovid                   |NULL |NULL    |NULL        |API openlibrary.org|
+[2026-03-17T10:46:27.982+0000] {subprocess.py:93} INFO - |NULL|Learning Python|Mark Lutz, David Ascher|NULL |NULL    |NULL        |API openlibrary.org|
+[2026-03-17T10:46:27.984+0000] {subprocess.py:93} INFO - |NULL|Python         |Mark Lutz              |NULL |NULL    |NULL        |API openlibrary.org|
+[2026-03-17T10:46:27.986+0000] {subprocess.py:93} INFO - +----+---------------+-----------------------+-----+--------+------------+-------------------+
+[2026-03-17T10:46:27.987+0000] {subprocess.py:93} INFO - only showing top 3 rows
+[2026-03-17T10:46:27.989+0000] {subprocess.py:93} INFO - 
+[2026-03-17T10:46:28.952+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-03-17T10:46:29.259+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_pipeline_finale, task_id=extract_data, execution_date=20260317T104511, start_date=20260317T104513, end_date=20260317T104629
+[2026-03-17T10:46:29.353+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-17T10:46:29.454+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

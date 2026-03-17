@@ -1,0 +1,107 @@
+[2026-03-17T10:48:51.213+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline_finale.transform_data manual__2026-03-17T10:45:11.907003+00:00 [queued]>
+[2026-03-17T10:48:51.294+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline_finale.transform_data manual__2026-03-17T10:45:11.907003+00:00 [queued]>
+[2026-03-17T10:48:51.296+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2026-03-17T10:48:51.371+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): transform_data> on 2026-03-17 10:45:11.907003+00:00
+[2026-03-17T10:48:51.390+0000] {standard_task_runner.py:60} INFO - Started process 687 to run task
+[2026-03-17T10:48:51.413+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_pipeline_finale', 'transform_data', 'manual__2026-03-17T10:45:11.907003+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpugn8m4ta']
+[2026-03-17T10:48:51.429+0000] {standard_task_runner.py:88} INFO - Job 19: Subtask transform_data
+[2026-03-17T10:48:51.816+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline_finale.transform_data manual__2026-03-17T10:45:11.907003+00:00 [running]> on host 57dd1bcf62af
+[2026-03-17T10:48:52.191+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='etl_pipeline_finale' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2026-03-17T10:45:11.907003+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-17T10:45:11.907003+00:00'
+[2026-03-17T10:48:52.195+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-03-17T10:48:52.198+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        docker exec -i --user root spark         /opt/spark/bin/spark-submit         --conf spark.jars.ivy=/tmp/ivy         --conf spark.hadoop.fs.s3a.endpoint=$MINIO_ENDPOINT         --conf spark.hadoop.fs.s3a.access.key=$MINIO_ACCESS_KEY         --conf spark.hadoop.fs.s3a.secret.key=$MINIO_SECRET_KEY         --conf spark.hadoop.fs.s3a.path.style.access=true         --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem         --packages org.apache.hadoop:hadoop-aws:3.3.4         /opt/spark/jobs/transformation.py\n        ']
+[2026-03-17T10:48:52.223+0000] {subprocess.py:86} INFO - Output:
+[2026-03-17T10:48:58.196+0000] {subprocess.py:93} INFO - ERROR StatusLogger Could not determine local host name
+[2026-03-17T10:48:58.200+0000] {subprocess.py:93} INFO -  java.net.UnknownHostException: spark: spark: Temporary failure in name resolution
+[2026-03-17T10:48:58.201+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getLocalHost(Unknown Source)
+[2026-03-17T10:48:58.203+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:56)
+[2026-03-17T10:48:58.207+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+[2026-03-17T10:48:58.209+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(Unknown Source)
+[2026-03-17T10:48:58.210+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+[2026-03-17T10:48:58.212+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+[2026-03-17T10:48:58.213+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:711)
+[2026-03-17T10:48:58.214+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.start(LoggerContext.java:253)
+[2026-03-17T10:48:58.216+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:245)
+[2026-03-17T10:48:58.218+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.impl.Log4jContextFactory.getContext(Log4jContextFactory.java:47)
+[2026-03-17T10:48:58.220+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.LogManager.getContext(LogManager.java:176)
+[2026-03-17T10:48:58.223+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.LogManager.getLogger(LogManager.java:666)
+[2026-03-17T10:48:58.224+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.LogManager.getRootLogger(LogManager.java:700)
+[2026-03-17T10:48:58.226+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.Logging.initializeLogging(Logging.scala:129)
+[2026-03-17T10:48:58.227+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.Logging.initializeLogIfNecessary(Logging.scala:114)
+[2026-03-17T10:48:58.229+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.Logging.initializeLogIfNecessary$(Logging.scala:108)
+[2026-03-17T10:48:58.230+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.initializeLogIfNecessary(SparkSubmit.scala:76)
+[2026-03-17T10:48:58.231+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:84)
+[2026-03-17T10:48:58.232+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+[2026-03-17T10:48:58.233+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+[2026-03-17T10:48:58.235+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2026-03-17T10:48:58.237+0000] {subprocess.py:93} INFO - Caused by: java.net.UnknownHostException: spark: Temporary failure in name resolution
+[2026-03-17T10:48:58.241+0000] {subprocess.py:93} INFO - 	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+[2026-03-17T10:48:58.243+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(Unknown Source)
+[2026-03-17T10:48:58.247+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+[2026-03-17T10:48:58.248+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress$NameServiceAddresses.get(Unknown Source)
+[2026-03-17T10:48:58.250+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getAllByName0(Unknown Source)
+[2026-03-17T10:48:58.252+0000] {subprocess.py:93} INFO - 	... 21 more
+[2026-03-17T10:48:58.962+0000] {subprocess.py:93} INFO - ERROR StatusConsoleListener Could not determine local host name
+[2026-03-17T10:48:58.964+0000] {subprocess.py:93} INFO -  java.net.UnknownHostException: spark: spark: Temporary failure in name resolution
+[2026-03-17T10:48:58.965+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getLocalHost(Unknown Source)
+[2026-03-17T10:48:58.968+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.util.NetUtils.getLocalHostname(NetUtils.java:56)
+[2026-03-17T10:48:58.974+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.lambda$setConfiguration$0(LoggerContext.java:615)
+[2026-03-17T10:48:58.976+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(Unknown Source)
+[2026-03-17T10:48:58.979+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.setConfiguration(LoggerContext.java:615)
+[2026-03-17T10:48:58.981+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.reconfigure(LoggerContext.java:694)
+[2026-03-17T10:48:58.982+0000] {subprocess.py:93} INFO - 	at org.apache.logging.log4j.core.LoggerContext.setConfigLocation(LoggerContext.java:679)
+[2026-03-17T10:48:58.984+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.Logging.initializeLogging(Logging.scala:139)
+[2026-03-17T10:48:58.986+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.Logging.initializeLogIfNecessary(Logging.scala:114)
+[2026-03-17T10:48:58.990+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.Logging.initializeLogIfNecessary$(Logging.scala:108)
+[2026-03-17T10:48:58.993+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.initializeLogIfNecessary(SparkSubmit.scala:76)
+[2026-03-17T10:48:58.995+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:84)
+[2026-03-17T10:48:58.997+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+[2026-03-17T10:48:58.999+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+[2026-03-17T10:48:59.003+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2026-03-17T10:48:59.006+0000] {subprocess.py:93} INFO - Caused by: java.net.UnknownHostException: spark: Temporary failure in name resolution
+[2026-03-17T10:48:59.008+0000] {subprocess.py:93} INFO - 	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+[2026-03-17T10:48:59.011+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(Unknown Source)
+[2026-03-17T10:48:59.013+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+[2026-03-17T10:48:59.016+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress$NameServiceAddresses.get(Unknown Source)
+[2026-03-17T10:48:59.018+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getAllByName0(Unknown Source)
+[2026-03-17T10:48:59.020+0000] {subprocess.py:93} INFO - 	... 15 more
+[2026-03-17T10:49:00.134+0000] {subprocess.py:93} INFO - Exception in thread "main" java.lang.ExceptionInInitializerError
+[2026-03-17T10:49:00.140+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmitArguments.$anonfun$loadEnvironmentArguments$5(SparkSubmitArguments.scala:163)
+[2026-03-17T10:49:00.141+0000] {subprocess.py:93} INFO - 	at scala.Option.orElse(Option.scala:447)
+[2026-03-17T10:49:00.142+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmitArguments.loadEnvironmentArguments(SparkSubmitArguments.scala:163)
+[2026-03-17T10:49:00.144+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmitArguments.<init>(SparkSubmitArguments.scala:118)
+[2026-03-17T10:49:00.145+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$$anon$2$$anon$3.<init>(SparkSubmit.scala:1103)
+[2026-03-17T10:49:00.146+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$$anon$2.parseArguments(SparkSubmit.scala:1103)
+[2026-03-17T10:49:00.147+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+[2026-03-17T10:49:00.148+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
+[2026-03-17T10:49:00.149+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
+[2026-03-17T10:49:00.150+0000] {subprocess.py:93} INFO - 	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2026-03-17T10:49:00.151+0000] {subprocess.py:93} INFO - Caused by: java.net.UnknownHostException: spark: spark: Temporary failure in name resolution
+[2026-03-17T10:49:00.151+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getLocalHost(Unknown Source)
+[2026-03-17T10:49:00.152+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.Utils$.findLocalInetAddress(Utils.scala:957)
+[2026-03-17T10:49:00.153+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.Utils$.localIpAddress$lzycompute(Utils.scala:950)
+[2026-03-17T10:49:00.154+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.Utils$.localIpAddress(Utils.scala:950)
+[2026-03-17T10:49:00.156+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.Utils$.$anonfun$localCanonicalHostName$1(Utils.scala:1007)
+[2026-03-17T10:49:00.157+0000] {subprocess.py:93} INFO - 	at scala.Option.getOrElse(Option.scala:189)
+[2026-03-17T10:49:00.158+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.Utils$.localCanonicalHostName(Utils.scala:1007)
+[2026-03-17T10:49:00.159+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.config.package$.<init>(package.scala:1063)
+[2026-03-17T10:49:00.160+0000] {subprocess.py:93} INFO - 	at org.apache.spark.internal.config.package$.<clinit>(package.scala)
+[2026-03-17T10:49:00.160+0000] {subprocess.py:93} INFO - 	... 10 more
+[2026-03-17T10:49:00.161+0000] {subprocess.py:93} INFO - Caused by: java.net.UnknownHostException: spark: Temporary failure in name resolution
+[2026-03-17T10:49:00.162+0000] {subprocess.py:93} INFO - 	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+[2026-03-17T10:49:00.163+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(Unknown Source)
+[2026-03-17T10:49:00.164+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getAddressesFromNameService(Unknown Source)
+[2026-03-17T10:49:00.165+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress$NameServiceAddresses.get(Unknown Source)
+[2026-03-17T10:49:00.166+0000] {subprocess.py:93} INFO - 	at java.base/java.net.InetAddress.getAllByName0(Unknown Source)
+[2026-03-17T10:49:00.167+0000] {subprocess.py:93} INFO - 	... 19 more
+[2026-03-17T10:49:00.189+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-03-17T10:49:00.219+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-03-17T10:49:00.228+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_pipeline_finale, task_id=transform_data, execution_date=20260317T104511, start_date=20260317T104851, end_date=20260317T104900
+[2026-03-17T10:49:00.277+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 19 for task transform_data (Bash command failed. The command returned a non-zero exit code 1.; 687)
+[2026-03-17T10:49:00.299+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-03-17T10:49:00.351+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

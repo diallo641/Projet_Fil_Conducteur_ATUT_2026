@@ -1,0 +1,25 @@
+[2026-03-17T10:14:46.131+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_books_pipeline_finale.transform_data manual__2026-03-17T10:11:14.484283+00:00 [queued]>
+[2026-03-17T10:14:46.143+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_books_pipeline_finale.transform_data manual__2026-03-17T10:11:14.484283+00:00 [queued]>
+[2026-03-17T10:14:46.144+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2026-03-17T10:14:46.181+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): transform_data> on 2026-03-17 10:11:14.484283+00:00
+[2026-03-17T10:14:46.187+0000] {standard_task_runner.py:60} INFO - Started process 668 to run task
+[2026-03-17T10:14:46.191+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_books_pipeline_finale', 'transform_data', 'manual__2026-03-17T10:11:14.484283+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpvqde2elv']
+[2026-03-17T10:14:46.197+0000] {standard_task_runner.py:88} INFO - Job 6: Subtask transform_data
+[2026-03-17T10:14:46.314+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_books_pipeline_finale.transform_data manual__2026-03-17T10:11:14.484283+00:00 [running]> on host 57dd1bcf62af
+[2026-03-17T10:14:46.449+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='etl_books_pipeline_finale' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2026-03-17T10:11:14.484283+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-17T10:11:14.484283+00:00'
+[2026-03-17T10:14:46.451+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-03-17T10:14:46.453+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        docker exec -i --user root spark         /opt/spark/bin/spark-submit         --conf spark.jars.ivy=/tmp/ivy         --conf spark.hadoop.fs.s3a.endpoint=$MINIO_ENDPOINT         --conf spark.hadoop.fs.s3a.access.key=$MINIO_ACCESS_KEY         --conf spark.hadoop.fs.s3a.secret.key=$MINIO_SECRET_KEY         --conf spark.hadoop.fs.s3a.path.style.access=true         --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem         --packages org.apache.hadoop:hadoop-aws:3.3.4         /opt/spark/jobs/transformation.py\n        ']
+[2026-03-17T10:14:46.464+0000] {subprocess.py:86} INFO - Output:
+[2026-03-17T10:14:46.521+0000] {subprocess.py:93} INFO - Error response from daemon: container 810983485a77b67e157b7a2a023ac04c74a89b8e8b10d8cbc2d81e3c877fa912 is not running
+[2026-03-17T10:14:46.525+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2026-03-17T10:14:46.542+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-03-17T10:14:46.547+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=etl_books_pipeline_finale, task_id=transform_data, execution_date=20260317T101114, start_date=20260317T101446, end_date=20260317T101446
+[2026-03-17T10:14:46.581+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 6 for task transform_data (Bash command failed. The command returned a non-zero exit code 1.; 668)
+[2026-03-17T10:14:46.608+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-03-17T10:14:46.635+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
