@@ -26,7 +26,6 @@ def test_dag_id(dagbag):
 def test_default_args(dagbag):
     dag = dagbag.get_dag(DAG_ID)
     default_args = dag.default_args
-
     assert default_args["owner"] == "ETL_TBD_ATUT_2026"
     assert default_args["depends_on_past"] is False
     assert default_args["email_on_failure"] is False
@@ -72,7 +71,7 @@ def test_dependencies(dagbag):
 
 def test_monitoring_pipeline(monkeypatch, dagbag):
     """
-    Teste la fonction monitoring_pipeline avec des TaskInstance simulées pour couvrir les branches.
+    Teste la fonction monitoring_pipeline avec des TaskInstance simulées.
     """
     dag = dagbag.get_dag(DAG_ID)
     
