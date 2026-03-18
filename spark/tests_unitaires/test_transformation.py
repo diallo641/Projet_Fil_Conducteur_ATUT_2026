@@ -21,8 +21,7 @@ def spark():
 
 def test_transformation_local_dir(monkeypatch, spark):
     """
-    Test de la transformation RAW → PROCESSED en utilisant des dossiers locaux
-    au lieu de MinIO/S3. Cela permet d'éviter l'erreur ClassNotFoundException S3A.
+    Test de la transformation  en utilisant des dossiers locaux.
     """
     with tempfile.TemporaryDirectory() as tmp_raw_dir, tempfile.TemporaryDirectory() as tmp_processed_dir:
 
