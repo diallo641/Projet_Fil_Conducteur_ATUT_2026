@@ -42,16 +42,16 @@ def run_transformation():
     )
 
     spark.sparkContext.setLogLevel("ERROR")
-    logger.info("🚀 Démarrage de la transformation ")
+    logger.info("Démarrage de la transformation ")
 
    
     # Lecture de tous les CSV
-    logger.info("📥 Lecture des fichiers CSV depuis le bucket extraction")
+    logger.info("Lecture des fichiers CSV depuis le bucket extraction")
     df = spark.read.option("header", "true").csv(EXTRACTION_BUCKET + "/*.csv")
-    logger.info(f"📊 Nombre de lignes lues : {df.count()}")
+    logger.info(f"Nombre de lignes lues : {df.count()}")
 
     if df.rdd.isEmpty():
-        logger.error("❌ Aucun fichier CSV trouvé dans le bucket extraction")
+        logger.error("Aucun fichier CSV trouvé dans le bucket extraction")
         raise Exception("Aucun fichier CSV trouvé dans le bucket extraction")
 
     
@@ -84,24 +84,24 @@ def run_transformation():
     # Garde la ligne avec le prix le plus élevé pour chaque ISBN/source
     window = Window.partitionBy("ISBN", "source").orderBy(desc("price"))
     df = df.withColumn("rn", row_number().over(window)).filter(col("rn") == 1).drop("rn")
-    logger.info(f"✅ Suppression des doublons par ISBN/source, nombre de lignes après : {df.count()}")
+    logger.info(f"Suppression des doublons par ISBN/source, nombre de lignes après : {df.count()}")
 
    
     # Ajout date d'ajout
     df = df.withColumn("date_ajout", current_date())
 
    
-    # Filtrer uniquement les 3 sources
+    # Filtrer 
     df = df.filter(col("source").isin(["csv", "scraping", "api"]))
-    logger.info("✅ Filtrage des 3 sources terminé")
+    logger.info("Filtrage des 3 sources terminé")
 
    
     # Écriture dans le bucket transformation
     df.write.mode("overwrite").partitionBy("source", "date_ajout").parquet(TRANSFORMATION_BUCKET)
-    logger.info("📦 Données écrites dans MinIO (bucket processed) avec partition source/date_ajout")
+    logger.info("Données écrites dans MinIO (bucket processed) avec partition source/date_ajout")
 
     spark.stop()
-    logger.info("✅ Transformation terminée avec succès sous Minio")
+    logger.info("Transformation terminée avec succès sous Minio")
 
 
 if __name__ == "__main__":

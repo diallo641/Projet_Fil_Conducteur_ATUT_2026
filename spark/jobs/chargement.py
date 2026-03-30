@@ -23,7 +23,7 @@ def uniformiser(df):
 # Main avec monitoring
 @monitor_performance("run_chargement")
 def run_chargement():
-    logger.info("🚀 Démarrage de la couche")
+    logger.info("Démarrage de la couche")
 
     # Variables d'environnement
     minio_endpoint = os.environ["MINIO_ENDPOINT"]
@@ -57,31 +57,31 @@ def run_chargement():
     spark.sparkContext.setLogLevel("WARN")
 
     try:
-        # Lecture
-        logger.info(f"📥 Lecture de la couche TRANSFORMATION depuis {TRANSFORMATION_BUCKET}")
+        #Lecture
+        logger.info(f"Lecture de la couche TRANSFORMATION depuis {TRANSFORMATION_BUCKET}")
         df = spark.read.parquet(TRANSFORMATION_BUCKET)
-        logger.info(f"📊 Nombre de lignes lues : {df.count()}")
+        logger.info(f"Nombre de lignes lues : {df.count()}")
 
         if df.rdd.isEmpty():
-            logger.error("❌ Aucun fichier trouvé dans le bucket transformation")
+            logger.error("Aucun fichier trouvé dans le bucket transformation")
             sys.exit(1)
 
-        # Curation
-        logger.info("🧹 Nettoyage des données")
+        #Curation
+        logger.info("Nettoyage des données")
         df_clean = uniformiser(df)
 
         # Écriture CURATED
-        logger.info(f"📤 Écriture vers {CHARGEMENT_BUCKET}")
+        logger.info(f"Écriture vers {CHARGEMENT_BUCKET}")
         df_clean.coalesce(1) \
             .write \
             .mode("overwrite") \
             .partitionBy("source_clean") \
             .parquet(CHARGEMENT_BUCKET)
 
-        logger.info("✅ Chargement terminé avec succès !")
+        logger.info("Chargement terminé avec succès !")
 
     except Exception as e:
-        logger.error(f"❌ Erreur lors du traitement : {e}")
+        logger.error(f"Erreur lors du traitement : {e}")
         sys.exit(1)
 
     finally:

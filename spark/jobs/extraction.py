@@ -25,7 +25,7 @@ def run_extraction(local_data_dir="/opt/spark/data", minio_bucket="s3a://extract
         .getOrCreate()
 
     spark.sparkContext.setLogLevel("ERROR")
-    logger.info("🎉 Début de l'extraction des fichiers CSV vers MinIO")
+    logger.info("Début de l'extraction des fichiers CSV vers MinIO")
 
     csv_files = [
         "livres_externe_clean.csv",
@@ -37,11 +37,11 @@ def run_extraction(local_data_dir="/opt/spark/data", minio_bucket="s3a://extract
         local_path = os.path.join(local_data_dir, file_name)
 
         if not os.path.exists(local_path):
-            logger.warning(f"⚠️ Fichier non trouvé : {local_path}")
+            logger.warning(f"Fichier non trouvé : {local_path}")
             continue
 
         df = spark.read.csv(local_path, header=True, inferSchema=True)
-        logger.info(f"✅ {file_name} lu : {df.count()} lignes")
+        logger.info(f"{file_name} lu : {df.count()} lignes")
         df.show(3, truncate=False)
 
         # Mesurer le temps du chargement
@@ -49,10 +49,10 @@ def run_extraction(local_data_dir="/opt/spark/data", minio_bucket="s3a://extract
         minio_path = minio_bucket + file_name
         df.coalesce(1).write.mode("overwrite").option("header", "true").csv(minio_path)
         duration = time.time() - start_time
-        logger.info(f"📦 {file_name} chargé dans MinIO : {minio_path} (durée {duration:.2f}s)")
+        logger.info(f"{file_name} chargé dans MinIO : {minio_path} (durée {duration:.2f}s)")
 
     spark.stop()
-    logger.info("🎉 Tous les fichiers CSV ont été chargés dans le bucket MinIO.")
+    logger.info("Tous les fichiers CSV ont été chargés dans le bucket MinIO.")
 
 
 # Utilisation  de la fonction pour exécuter dans le  fichier test

@@ -5,7 +5,7 @@ import glob
 import pytest
 from pyspark.sql import SparkSession
 
-# ✅ Mock du module manquant pour que l'import de run_extraction fonctionne
+#Mock du module manquant pour que l'import de run_extraction fonctionne
 from unittest.mock import MagicMock
 sys.modules["etl_monitoring"] = MagicMock()
 sys.modules["etl_monitoring"].logger = MagicMock()

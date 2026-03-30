@@ -1,0 +1,151 @@
+[2026-03-18T15:25:23.729+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ETL.load_curated manual__2026-03-18T15:22:14.710701+00:00 [queued]>
+[2026-03-18T15:25:23.759+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ETL.load_curated manual__2026-03-18T15:22:14.710701+00:00 [queued]>
+[2026-03-18T15:25:23.760+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-18T15:25:23.826+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): load_curated> on 2026-03-18 15:22:14.710701+00:00
+[2026-03-18T15:25:23.839+0000] {standard_task_runner.py:60} INFO - Started process 827 to run task
+[2026-03-18T15:25:23.850+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ETL', 'load_curated', 'manual__2026-03-18T15:22:14.710701+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpmh2klkmn']
+[2026-03-18T15:25:23.856+0000] {standard_task_runner.py:88} INFO - Job 37: Subtask load_curated
+[2026-03-18T15:25:24.071+0000] {task_command.py:423} INFO - Running <TaskInstance: pipeline_ETL.load_curated manual__2026-03-18T15:22:14.710701+00:00 [running]> on host 57dd1bcf62af
+[2026-03-18T15:25:24.484+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='pipeline_ETL' AIRFLOW_CTX_TASK_ID='load_curated' AIRFLOW_CTX_EXECUTION_DATE='2026-03-18T15:22:14.710701+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-18T15:22:14.710701+00:00'
+[2026-03-18T15:25:24.499+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-03-18T15:25:24.502+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        docker exec -i --user root spark_final bash -c "\n        export SPARK_LOCAL_IP=127.0.0.1\n\n        /opt/spark/bin/spark-submit         --conf spark.driver.host=127.0.0.1         --conf spark.driver.bindAddress=0.0.0.0         --conf spark.local.hostname=localhost         --conf spark.jars.ivy=/tmp/ivy         --conf spark.hadoop.fs.s3a.endpoint=$MINIO_ENDPOINT         --conf spark.hadoop.fs.s3a.access.key=$MINIO_ACCESS_KEY         --conf spark.hadoop.fs.s3a.secret.key=$MINIO_SECRET_KEY         --conf spark.hadoop.fs.s3a.path.style.access=true         --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem         --packages org.apache.hadoop:hadoop-aws:3.3.4         /opt/spark/jobs/chargement.py\n        "\n        ']
+[2026-03-18T15:25:24.535+0000] {subprocess.py:86} INFO - Output:
+[2026-03-18T15:25:31.472+0000] {subprocess.py:93} INFO - :: loading settings :: url = jar:file:/opt/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2026-03-18T15:25:32.081+0000] {subprocess.py:93} INFO - Ivy Default Cache set to: /tmp/ivy/cache
+[2026-03-18T15:25:32.084+0000] {subprocess.py:93} INFO - The jars for the packages stored in: /tmp/ivy/jars
+[2026-03-18T15:25:32.111+0000] {subprocess.py:93} INFO - org.apache.hadoop#hadoop-aws added as a dependency
+[2026-03-18T15:25:32.124+0000] {subprocess.py:93} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-b9aeeac2-11cc-404c-bbbf-f2bf29b90c56;1.0
+[2026-03-18T15:25:32.126+0000] {subprocess.py:93} INFO - 	confs: [default]
+[2026-03-18T15:25:32.684+0000] {subprocess.py:93} INFO - 	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+[2026-03-18T15:25:32.746+0000] {subprocess.py:93} INFO - 	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
+[2026-03-18T15:25:32.823+0000] {subprocess.py:93} INFO - 	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+[2026-03-18T15:25:32.891+0000] {subprocess.py:93} INFO - :: resolution report :: resolve 746ms :: artifacts dl 25ms
+[2026-03-18T15:25:32.893+0000] {subprocess.py:93} INFO - 	:: modules in use:
+[2026-03-18T15:25:32.895+0000] {subprocess.py:93} INFO - 	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
+[2026-03-18T15:25:32.896+0000] {subprocess.py:93} INFO - 	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+[2026-03-18T15:25:32.898+0000] {subprocess.py:93} INFO - 	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+[2026-03-18T15:25:32.899+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-18T15:25:32.901+0000] {subprocess.py:93} INFO - 	|                  |            modules            ||   artifacts   |
+[2026-03-18T15:25:32.902+0000] {subprocess.py:93} INFO - 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2026-03-18T15:25:32.904+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-18T15:25:32.906+0000] {subprocess.py:93} INFO - 	|      default     |   3   |   0   |   0   |   0   ||   3   |   0   |
+[2026-03-18T15:25:32.907+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-18T15:25:32.909+0000] {subprocess.py:93} INFO - :: retrieving :: org.apache.spark#spark-submit-parent-b9aeeac2-11cc-404c-bbbf-f2bf29b90c56
+[2026-03-18T15:25:32.910+0000] {subprocess.py:93} INFO - 	confs: [default]
+[2026-03-18T15:25:32.924+0000] {subprocess.py:93} INFO - 	0 artifacts copied, 3 already retrieved (0kB/20ms)
+[2026-03-18T15:25:33.578+0000] {subprocess.py:93} INFO - 26/03/18 15:25:33 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-03-18T15:25:35.372+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:25:35,369", "level": "INFO", "message": "\ud83d\ude80 D\u00e9marrage de la couche", "module": "chargement"}
+[2026-03-18T15:25:35.797+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO SparkContext: Running Spark version 3.5.1
+[2026-03-18T15:25:35.798+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+[2026-03-18T15:25:35.799+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO SparkContext: Java version 11.0.22
+[2026-03-18T15:25:35.852+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO ResourceUtils: ==============================================================
+[2026-03-18T15:25:35.853+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2026-03-18T15:25:35.855+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO ResourceUtils: ==============================================================
+[2026-03-18T15:25:35.857+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO SparkContext: Submitted application: Books_ETL
+[2026-03-18T15:25:35.930+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2026-03-18T15:25:35.955+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO ResourceProfile: Limiting resource is cpu
+[2026-03-18T15:25:35.957+0000] {subprocess.py:93} INFO - 26/03/18 15:25:35 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2026-03-18T15:25:36.150+0000] {subprocess.py:93} INFO - 26/03/18 15:25:36 INFO SecurityManager: Changing view acls to: root
+[2026-03-18T15:25:36.152+0000] {subprocess.py:93} INFO - 26/03/18 15:25:36 INFO SecurityManager: Changing modify acls to: root
+[2026-03-18T15:25:36.154+0000] {subprocess.py:93} INFO - 26/03/18 15:25:36 INFO SecurityManager: Changing view acls groups to:
+[2026-03-18T15:25:36.156+0000] {subprocess.py:93} INFO - 26/03/18 15:25:36 INFO SecurityManager: Changing modify acls groups to:
+[2026-03-18T15:25:36.157+0000] {subprocess.py:93} INFO - 26/03/18 15:25:36 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+[2026-03-18T15:25:37.104+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO Utils: Successfully started service 'sparkDriver' on port 38359.
+[2026-03-18T15:25:37.235+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO SparkEnv: Registering MapOutputTracker
+[2026-03-18T15:25:37.389+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO SparkEnv: Registering BlockManagerMaster
+[2026-03-18T15:25:37.478+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2026-03-18T15:25:37.481+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2026-03-18T15:25:37.499+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2026-03-18T15:25:37.568+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-54dbf5e0-45ee-47ce-8ef6-aaaff56bfb8d
+[2026-03-18T15:25:37.609+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2026-03-18T15:25:37.657+0000] {subprocess.py:93} INFO - 26/03/18 15:25:37 INFO SparkEnv: Registering OutputCommitCoordinator
+[2026-03-18T15:25:38.034+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+[2026-03-18T15:25:38.168+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2026-03-18T15:25:38.263+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO SparkContext: Added JAR /opt/spark/libs/hadoop-aws-3.3.6.jar at spark://127.0.0.1:38359/jars/hadoop-aws-3.3.6.jar with timestamp 1773847535777
+[2026-03-18T15:25:38.275+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO SparkContext: Added JAR /opt/spark/libs/aws-java-sdk-bundle-1.12.500.jar at spark://127.0.0.1:38359/jars/aws-java-sdk-bundle-1.12.500.jar with timestamp 1773847535777
+[2026-03-18T15:25:38.286+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO SparkContext: Added file file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar at file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar with timestamp 1773847535777
+[2026-03-18T15:25:38.290+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO Utils: Copying /tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/org.apache.hadoop_hadoop-aws-3.3.4.jar
+[2026-03-18T15:25:38.323+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO SparkContext: Added file file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar at file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar with timestamp 1773847535777
+[2026-03-18T15:25:38.324+0000] {subprocess.py:93} INFO - 26/03/18 15:25:38 INFO Utils: Copying /tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar
+[2026-03-18T15:25:39.722+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO SparkContext: Added file file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar at file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1773847535777
+[2026-03-18T15:25:39.723+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Utils: Copying /tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar
+[2026-03-18T15:25:39.879+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Executor: Starting executor ID driver on host localhost
+[2026-03-18T15:25:39.880+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+[2026-03-18T15:25:39.881+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Executor: Java version 11.0.22
+[2026-03-18T15:25:39.896+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+[2026-03-18T15:25:39.898+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@1ab2eece for default.
+[2026-03-18T15:25:39.923+0000] {subprocess.py:93} INFO - 26/03/18 15:25:39 INFO Executor: Fetching file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar with timestamp 1773847535777
+[2026-03-18T15:25:40.343+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Utils: /tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar has been previously copied to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar
+[2026-03-18T15:25:40.352+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Executor: Fetching file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1773847535777
+[2026-03-18T15:25:40.355+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Utils: /tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar has been previously copied to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar
+[2026-03-18T15:25:40.365+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Executor: Fetching file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar with timestamp 1773847535777
+[2026-03-18T15:25:40.368+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Utils: /tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar has been previously copied to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/org.apache.hadoop_hadoop-aws-3.3.4.jar
+[2026-03-18T15:25:40.384+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Executor: Fetching spark://127.0.0.1:38359/jars/aws-java-sdk-bundle-1.12.500.jar with timestamp 1773847535777
+[2026-03-18T15:25:40.468+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO TransportClientFactory: Successfully created connection to /127.0.0.1:38359 after 59 ms (0 ms spent in bootstraps)
+[2026-03-18T15:25:40.497+0000] {subprocess.py:93} INFO - 26/03/18 15:25:40 INFO Utils: Fetching spark://127.0.0.1:38359/jars/aws-java-sdk-bundle-1.12.500.jar to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/fetchFileTemp1406680062021637233.tmp
+[2026-03-18T15:25:50.509+0000] {subprocess.py:93} INFO - 26/03/18 15:25:50 INFO Executor: Told to re-register on heartbeat
+[2026-03-18T15:25:50.521+0000] {subprocess.py:93} INFO - 26/03/18 15:25:50 INFO BlockManager: BlockManager null re-registering with master
+[2026-03-18T15:25:50.525+0000] {subprocess.py:93} INFO - 26/03/18 15:25:50 INFO BlockManagerMaster: Registering BlockManager null
+[2026-03-18T15:25:50.562+0000] {subprocess.py:93} INFO - 26/03/18 15:25:50 ERROR Inbox: Ignoring error
+[2026-03-18T15:25:50.563+0000] {subprocess.py:93} INFO - java.lang.NullPointerException
+[2026-03-18T15:25:50.566+0000] {subprocess.py:93} INFO - 	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
+[2026-03-18T15:25:50.568+0000] {subprocess.py:93} INFO - 	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
+[2026-03-18T15:25:50.569+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
+[2026-03-18T15:25:50.571+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+[2026-03-18T15:25:50.573+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+[2026-03-18T15:25:50.574+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+[2026-03-18T15:25:50.576+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+[2026-03-18T15:25:50.577+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+[2026-03-18T15:25:50.579+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+[2026-03-18T15:25:50.580+0000] {subprocess.py:93} INFO - 	at java.base/java.lang.Thread.run(Unknown Source)
+[2026-03-18T15:25:50.582+0000] {subprocess.py:93} INFO - 26/03/18 15:25:50 WARN Executor: Issue communicating with driver in heartbeater
+[2026-03-18T15:25:50.583+0000] {subprocess.py:93} INFO - org.apache.spark.SparkException: Exception thrown in awaitResult:
+[2026-03-18T15:25:50.584+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.SparkThreadUtils$.awaitResult(SparkThreadUtils.scala:56)
+[2026-03-18T15:25:50.585+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:310)
+[2026-03-18T15:25:50.586+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+[2026-03-18T15:25:50.588+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:101)
+[2026-03-18T15:25:50.589+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:85)
+[2026-03-18T15:25:50.590+0000] {subprocess.py:93} INFO - 	at org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:80)
+[2026-03-18T15:25:50.591+0000] {subprocess.py:93} INFO - 	at org.apache.spark.storage.BlockManager.reregister(BlockManager.scala:642)
+[2026-03-18T15:25:50.593+0000] {subprocess.py:93} INFO - 	at org.apache.spark.executor.Executor.reportHeartBeat(Executor.scala:1223)
+[2026-03-18T15:25:50.594+0000] {subprocess.py:93} INFO - 	at org.apache.spark.executor.Executor.$anonfun$heartbeater$1(Executor.scala:295)
+[2026-03-18T15:25:50.595+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2026-03-18T15:25:50.597+0000] {subprocess.py:93} INFO - 	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1928)
+[2026-03-18T15:25:50.598+0000] {subprocess.py:93} INFO - 	at org.apache.spark.Heartbeater$$anon$1.run(Heartbeater.scala:46)
+[2026-03-18T15:25:50.601+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+[2026-03-18T15:25:50.602+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+[2026-03-18T15:25:50.604+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+[2026-03-18T15:25:50.605+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+[2026-03-18T15:25:50.606+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+[2026-03-18T15:25:50.608+0000] {subprocess.py:93} INFO - 	at java.base/java.lang.Thread.run(Unknown Source)
+[2026-03-18T15:25:50.610+0000] {subprocess.py:93} INFO - Caused by: java.lang.NullPointerException
+[2026-03-18T15:25:50.611+0000] {subprocess.py:93} INFO - 	at org.apache.spark.storage.BlockManagerMasterEndpoint.org$apache$spark$storage$BlockManagerMasterEndpoint$$register(BlockManagerMasterEndpoint.scala:677)
+[2026-03-18T15:25:50.614+0000] {subprocess.py:93} INFO - 	at org.apache.spark.storage.BlockManagerMasterEndpoint$$anonfun$receiveAndReply$1.applyOrElse(BlockManagerMasterEndpoint.scala:133)
+[2026-03-18T15:25:50.615+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:103)
+[2026-03-18T15:25:50.617+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+[2026-03-18T15:25:50.619+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+[2026-03-18T15:25:50.621+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+[2026-03-18T15:25:50.622+0000] {subprocess.py:93} INFO - 	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+[2026-03-18T15:25:50.625+0000] {subprocess.py:93} INFO - 	... 3 more
+[2026-03-18T15:25:54.830+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO Executor: Adding file:/tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/aws-java-sdk-bundle-1.12.500.jar to class loader default
+[2026-03-18T15:25:54.834+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO Executor: Fetching spark://127.0.0.1:38359/jars/hadoop-aws-3.3.6.jar with timestamp 1773847535777
+[2026-03-18T15:25:54.836+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO Utils: Fetching spark://127.0.0.1:38359/jars/hadoop-aws-3.3.6.jar to /tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/fetchFileTemp14485933302778433482.tmp
+[2026-03-18T15:25:54.955+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO Executor: Adding file:/tmp/spark-39c66de1-6a84-42c5-ae9a-d296d9f29f1d/userFiles-52c61c3b-0dfa-4696-b3c6-0710343ba8bf/hadoop-aws-3.3.6.jar to class loader default
+[2026-03-18T15:25:54.991+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39879.
+[2026-03-18T15:25:54.995+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO NettyBlockTransferService: Server created on 127.0.0.1 0.0.0.0:39879
+[2026-03-18T15:25:55.001+0000] {subprocess.py:93} INFO - 26/03/18 15:25:54 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2026-03-18T15:25:55.021+0000] {subprocess.py:93} INFO - 26/03/18 15:25:55 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 39879, None)
+[2026-03-18T15:25:55.028+0000] {subprocess.py:93} INFO - 26/03/18 15:25:55 INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:39879 with 434.4 MiB RAM, BlockManagerId(driver, 127.0.0.1, 39879, None)
+[2026-03-18T15:25:55.038+0000] {subprocess.py:93} INFO - 26/03/18 15:25:55 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 39879, None)
+[2026-03-18T15:25:55.045+0000] {subprocess.py:93} INFO - 26/03/18 15:25:55 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 39879, None)
+[2026-03-18T15:25:56.468+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:25:56,465", "level": "INFO", "message": "\ud83d\udce5 Lecture de la couche TRANSFORMATION depuis s3a://transformation/livres/", "module": "chargement"}
+[2026-03-18T15:25:59.358+0000] {subprocess.py:93} INFO - 26/03/18 15:25:59 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[2026-03-18T15:26:16.868+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:26:16,864", "level": "INFO", "message": "\ud83d\udcca Nombre de lignes lues : 271367", "module": "chargement"}
+[2026-03-18T15:26:19.999+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:26:19,995", "level": "INFO", "message": "\ud83e\uddf9 Nettoyage des donn\u00e9es", "module": "chargement"}
+[2026-03-18T15:26:20.316+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:26:20,314", "level": "INFO", "message": "\ud83d\udce4 \u00c9criture vers s3a://chargement/livres/", "module": "chargement"}
+[2026-03-18T15:26:34.588+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:26:34,579", "level": "INFO", "message": "\u2705 Chargement termin\u00e9 avec succ\u00e8s !", "module": "chargement"}
+[2026-03-18T15:26:34.986+0000] {subprocess.py:93} INFO - {"time": "2026-03-18 15:26:34,982", "level": "INFO", "message": "{\"step\": \"run_chargement\", \"duration_sec\": 59.612897634506226}", "module": "etl_monitoring"}
+[2026-03-18T15:26:35.446+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-03-18T15:26:35.556+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=pipeline_ETL, task_id=load_curated, execution_date=20260318T152214, start_date=20260318T152523, end_date=20260318T152635
+[2026-03-18T15:26:35.656+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-18T15:26:35.777+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

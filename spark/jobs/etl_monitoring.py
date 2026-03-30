@@ -1,12 +1,10 @@
-# etl_monitoring.py
+
 import logging
 import json
 import time
 from functools import wraps
 
-# -------------------------
-# Logging structuré JSON
-# -------------------------
+
 class JsonFormatter(logging.Formatter):
     def format(self, record):
         log_record = {
@@ -28,9 +26,8 @@ def get_logger(name="etl_logger"):
 
 logger = get_logger()
 
-# -------------------------
-# Decorateur pour mesurer la performance
-# -------------------------
+
+#mesurer la performance
 def monitor_performance(step_name):
     """
     Decorator pour mesurer le temps d'execution d'une fonction et logger en JSON

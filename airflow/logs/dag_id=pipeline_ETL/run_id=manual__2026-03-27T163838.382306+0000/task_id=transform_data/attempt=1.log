@@ -1,0 +1,115 @@
+[2026-03-27T16:41:53.744+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_ETL.transform_data manual__2026-03-27T16:38:38.382306+00:00 [queued]>
+[2026-03-27T16:41:53.778+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_ETL.transform_data manual__2026-03-27T16:38:38.382306+00:00 [queued]>
+[2026-03-27T16:41:53.780+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-03-27T16:41:53.847+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): transform_data> on 2026-03-27 16:38:38.382306+00:00
+[2026-03-27T16:41:53.866+0000] {standard_task_runner.py:60} INFO - Started process 1262 to run task
+[2026-03-27T16:41:53.885+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'pipeline_ETL', 'transform_data', 'manual__2026-03-27T16:38:38.382306+00:00', '--job-id', '58', '--raw', '--subdir', 'DAGS_FOLDER/ETL_pipeline.py', '--cfg-path', '/tmp/tmpo77gqtjy']
+[2026-03-27T16:41:53.894+0000] {standard_task_runner.py:88} INFO - Job 58: Subtask transform_data
+[2026-03-27T16:41:54.235+0000] {task_command.py:423} INFO - Running <TaskInstance: pipeline_ETL.transform_data manual__2026-03-27T16:38:38.382306+00:00 [running]> on host 57dd1bcf62af
+[2026-03-27T16:41:54.955+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='ETL_TBD_ATUT_2026' AIRFLOW_CTX_DAG_ID='pipeline_ETL' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2026-03-27T16:38:38.382306+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-27T16:38:38.382306+00:00'
+[2026-03-27T16:41:54.961+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-03-27T16:41:54.969+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        docker exec -i --user root spark_final bash -c "\n        export SPARK_LOCAL_IP=127.0.0.1\n\n        /opt/spark/bin/spark-submit         --conf spark.driver.host=127.0.0.1         --conf spark.driver.bindAddress=0.0.0.0         --conf spark.local.hostname=localhost         --conf spark.jars.ivy=/tmp/ivy         --conf spark.hadoop.fs.s3a.endpoint=$MINIO_ENDPOINT         --conf spark.hadoop.fs.s3a.access.key=$MINIO_ACCESS_KEY         --conf spark.hadoop.fs.s3a.secret.key=$MINIO_SECRET_KEY         --conf spark.hadoop.fs.s3a.path.style.access=true         --conf spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem         --packages org.apache.hadoop:hadoop-aws:3.3.4         /opt/spark/jobs/transformation.py\n        "\n        ']
+[2026-03-27T16:41:55.029+0000] {subprocess.py:86} INFO - Output:
+[2026-03-27T16:42:03.568+0000] {subprocess.py:93} INFO - :: loading settings :: url = jar:file:/opt/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+[2026-03-27T16:42:03.943+0000] {subprocess.py:93} INFO - Ivy Default Cache set to: /tmp/ivy/cache
+[2026-03-27T16:42:03.945+0000] {subprocess.py:93} INFO - The jars for the packages stored in: /tmp/ivy/jars
+[2026-03-27T16:42:03.978+0000] {subprocess.py:93} INFO - org.apache.hadoop#hadoop-aws added as a dependency
+[2026-03-27T16:42:03.984+0000] {subprocess.py:93} INFO - :: resolving dependencies :: org.apache.spark#spark-submit-parent-773fc146-c415-456e-8aba-8b54fdac2f74;1.0
+[2026-03-27T16:42:03.986+0000] {subprocess.py:93} INFO - 	confs: [default]
+[2026-03-27T16:42:05.004+0000] {subprocess.py:93} INFO - 	found org.apache.hadoop#hadoop-aws;3.3.4 in central
+[2026-03-27T16:42:05.109+0000] {subprocess.py:93} INFO - 	found com.amazonaws#aws-java-sdk-bundle;1.12.262 in central
+[2026-03-27T16:42:05.210+0000] {subprocess.py:93} INFO - 	found org.wildfly.openssl#wildfly-openssl;1.0.7.Final in central
+[2026-03-27T16:42:05.284+0000] {subprocess.py:93} INFO - :: resolution report :: resolve 1278ms :: artifacts dl 23ms
+[2026-03-27T16:42:05.287+0000] {subprocess.py:93} INFO - 	:: modules in use:
+[2026-03-27T16:42:05.289+0000] {subprocess.py:93} INFO - 	com.amazonaws#aws-java-sdk-bundle;1.12.262 from central in [default]
+[2026-03-27T16:42:05.291+0000] {subprocess.py:93} INFO - 	org.apache.hadoop#hadoop-aws;3.3.4 from central in [default]
+[2026-03-27T16:42:05.293+0000] {subprocess.py:93} INFO - 	org.wildfly.openssl#wildfly-openssl;1.0.7.Final from central in [default]
+[2026-03-27T16:42:05.295+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-27T16:42:05.297+0000] {subprocess.py:93} INFO - 	|                  |            modules            ||   artifacts   |
+[2026-03-27T16:42:05.300+0000] {subprocess.py:93} INFO - 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+[2026-03-27T16:42:05.303+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-27T16:42:05.306+0000] {subprocess.py:93} INFO - 	|      default     |   3   |   0   |   0   |   0   ||   3   |   0   |
+[2026-03-27T16:42:05.308+0000] {subprocess.py:93} INFO - 	---------------------------------------------------------------------
+[2026-03-27T16:42:05.310+0000] {subprocess.py:93} INFO - :: retrieving :: org.apache.spark#spark-submit-parent-773fc146-c415-456e-8aba-8b54fdac2f74
+[2026-03-27T16:42:05.311+0000] {subprocess.py:93} INFO - 	confs: [default]
+[2026-03-27T16:42:05.325+0000] {subprocess.py:93} INFO - 	0 artifacts copied, 3 already retrieved (0kB/22ms)
+[2026-03-27T16:42:06.201+0000] {subprocess.py:93} INFO - 26/03/27 16:42:06 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-03-27T16:42:09.550+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO SparkContext: Running Spark version 3.5.1
+[2026-03-27T16:42:09.556+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+[2026-03-27T16:42:09.558+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO SparkContext: Java version 11.0.22
+[2026-03-27T16:42:09.649+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO ResourceUtils: ==============================================================
+[2026-03-27T16:42:09.652+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2026-03-27T16:42:09.657+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO ResourceUtils: ==============================================================
+[2026-03-27T16:42:09.659+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO SparkContext: Submitted application: Books_ETL
+[2026-03-27T16:42:09.766+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2026-03-27T16:42:09.813+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO ResourceProfile: Limiting resource is cpu
+[2026-03-27T16:42:09.818+0000] {subprocess.py:93} INFO - 26/03/27 16:42:09 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2026-03-27T16:42:10.116+0000] {subprocess.py:93} INFO - 26/03/27 16:42:10 INFO SecurityManager: Changing view acls to: root
+[2026-03-27T16:42:10.121+0000] {subprocess.py:93} INFO - 26/03/27 16:42:10 INFO SecurityManager: Changing modify acls to: root
+[2026-03-27T16:42:10.123+0000] {subprocess.py:93} INFO - 26/03/27 16:42:10 INFO SecurityManager: Changing view acls groups to:
+[2026-03-27T16:42:10.127+0000] {subprocess.py:93} INFO - 26/03/27 16:42:10 INFO SecurityManager: Changing modify acls groups to:
+[2026-03-27T16:42:10.131+0000] {subprocess.py:93} INFO - 26/03/27 16:42:10 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+[2026-03-27T16:42:11.260+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO Utils: Successfully started service 'sparkDriver' on port 43477.
+[2026-03-27T16:42:11.435+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO SparkEnv: Registering MapOutputTracker
+[2026-03-27T16:42:11.593+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO SparkEnv: Registering BlockManagerMaster
+[2026-03-27T16:42:11.691+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2026-03-27T16:42:11.696+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2026-03-27T16:42:11.718+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2026-03-27T16:42:11.847+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-cb9f384f-3be7-4cbb-a48e-2e05153ebe82
+[2026-03-27T16:42:11.930+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2026-03-27T16:42:12.001+0000] {subprocess.py:93} INFO - 26/03/27 16:42:11 INFO SparkEnv: Registering OutputCommitCoordinator
+[2026-03-27T16:42:12.632+0000] {subprocess.py:93} INFO - 26/03/27 16:42:12 INFO JettyUtils: Start Jetty 127.0.0.1:4040 for SparkUI
+[2026-03-27T16:42:12.936+0000] {subprocess.py:93} INFO - 26/03/27 16:42:12 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2026-03-27T16:42:13.110+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO SparkContext: Added JAR file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar at spark://127.0.0.1:43477/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar with timestamp 1774629729513
+[2026-03-27T16:42:13.112+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO SparkContext: Added JAR file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar at spark://127.0.0.1:43477/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar with timestamp 1774629729513
+[2026-03-27T16:42:13.114+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO SparkContext: Added JAR file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar at spark://127.0.0.1:43477/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1774629729513
+[2026-03-27T16:42:13.126+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO SparkContext: Added file file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar at file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar with timestamp 1774629729513
+[2026-03-27T16:42:13.132+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO Utils: Copying /tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.apache.hadoop_hadoop-aws-3.3.4.jar
+[2026-03-27T16:42:13.190+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO SparkContext: Added file file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar at file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar with timestamp 1774629729513
+[2026-03-27T16:42:13.192+0000] {subprocess.py:93} INFO - 26/03/27 16:42:13 INFO Utils: Copying /tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar
+[2026-03-27T16:42:16.287+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO SparkContext: Added file file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar at file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1774629729513
+[2026-03-27T16:42:16.289+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Utils: Copying /tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar
+[2026-03-27T16:42:16.581+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Executor: Starting executor ID driver on host localhost
+[2026-03-27T16:42:16.583+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Executor: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+[2026-03-27T16:42:16.586+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Executor: Java version 11.0.22
+[2026-03-27T16:42:16.613+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+[2026-03-27T16:42:16.615+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@7e3069bc for default.
+[2026-03-27T16:42:16.666+0000] {subprocess.py:93} INFO - 26/03/27 16:42:16 INFO Executor: Fetching file:///tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar with timestamp 1774629729513
+[2026-03-27T16:42:17.335+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Utils: /tmp/ivy/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar has been previously copied to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar
+[2026-03-27T16:42:17.356+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Executor: Fetching file:///tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1774629729513
+[2026-03-27T16:42:17.361+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Utils: /tmp/ivy/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar has been previously copied to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar
+[2026-03-27T16:42:17.379+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Executor: Fetching file:///tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar with timestamp 1774629729513
+[2026-03-27T16:42:17.383+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Utils: /tmp/ivy/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar has been previously copied to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.apache.hadoop_hadoop-aws-3.3.4.jar
+[2026-03-27T16:42:17.409+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Executor: Fetching spark://127.0.0.1:43477/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar with timestamp 1774629729513
+[2026-03-27T16:42:17.566+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO TransportClientFactory: Successfully created connection to /127.0.0.1:43477 after 117 ms (0 ms spent in bootstraps)
+[2026-03-27T16:42:17.619+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Utils: Fetching spark://127.0.0.1:43477/jars/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/fetchFileTemp2194035857980176517.tmp
+[2026-03-27T16:42:17.749+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Utils: /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/fetchFileTemp2194035857980176517.tmp has been previously copied to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar
+[2026-03-27T16:42:17.787+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Executor: Adding file:/tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.wildfly.openssl_wildfly-openssl-1.0.7.Final.jar to class loader default
+[2026-03-27T16:42:17.792+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Executor: Fetching spark://127.0.0.1:43477/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar with timestamp 1774629729513
+[2026-03-27T16:42:17.794+0000] {subprocess.py:93} INFO - 26/03/27 16:42:17 INFO Utils: Fetching spark://127.0.0.1:43477/jars/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/fetchFileTemp6185841582114888013.tmp
+[2026-03-27T16:42:20.822+0000] {subprocess.py:93} INFO - 26/03/27 16:42:20 INFO Utils: /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/fetchFileTemp6185841582114888013.tmp has been previously copied to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar
+[2026-03-27T16:42:20.938+0000] {subprocess.py:93} INFO - 26/03/27 16:42:20 INFO Executor: Adding file:/tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/com.amazonaws_aws-java-sdk-bundle-1.12.262.jar to class loader default
+[2026-03-27T16:42:20.942+0000] {subprocess.py:93} INFO - 26/03/27 16:42:20 INFO Executor: Fetching spark://127.0.0.1:43477/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar with timestamp 1774629729513
+[2026-03-27T16:42:20.944+0000] {subprocess.py:93} INFO - 26/03/27 16:42:20 INFO Utils: Fetching spark://127.0.0.1:43477/jars/org.apache.hadoop_hadoop-aws-3.3.4.jar to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/fetchFileTemp17244263354145930051.tmp
+[2026-03-27T16:42:20.975+0000] {subprocess.py:93} INFO - 26/03/27 16:42:20 INFO Utils: /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/fetchFileTemp17244263354145930051.tmp has been previously copied to /tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.apache.hadoop_hadoop-aws-3.3.4.jar
+[2026-03-27T16:42:20.993+0000] {subprocess.py:93} INFO - 26/03/27 16:42:20 INFO Executor: Adding file:/tmp/spark-0922f514-d8c8-4d6b-84a9-0f649cdd58cc/userFiles-47cf5c15-69ca-4504-95b7-c4ca750dbdff/org.apache.hadoop_hadoop-aws-3.3.4.jar to class loader default
+[2026-03-27T16:42:21.051+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33863.
+[2026-03-27T16:42:21.053+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO NettyBlockTransferService: Server created on 127.0.0.1 0.0.0.0:33863
+[2026-03-27T16:42:21.063+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2026-03-27T16:42:21.102+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 127.0.0.1, 33863, None)
+[2026-03-27T16:42:21.121+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO BlockManagerMasterEndpoint: Registering block manager 127.0.0.1:33863 with 434.4 MiB RAM, BlockManagerId(driver, 127.0.0.1, 33863, None)
+[2026-03-27T16:42:21.137+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 127.0.0.1, 33863, None)
+[2026-03-27T16:42:21.144+0000] {subprocess.py:93} INFO - 26/03/27 16:42:21 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 127.0.0.1, 33863, None)
+[2026-03-27T16:42:23.054+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:42:23,050", "level": "INFO", "message": "D\u00e9marrage de la transformation ", "module": "transformation"}
+[2026-03-27T16:42:23.057+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:42:23,050", "level": "INFO", "message": "Lecture des fichiers CSV depuis le bucket extraction", "module": "transformation"}
+[2026-03-27T16:42:52.646+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:42:52,639", "level": "INFO", "message": "Nombre de lignes lues : 272566", "module": "transformation"}
+[2026-03-27T16:42:57.079+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:42:57,072", "level": "INFO", "message": "\ud83d\udc8e Nettoyage des prix effectu\u00e9", "module": "transformation"}
+[2026-03-27T16:43:10.906+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:43:10,899", "level": "INFO", "message": "Suppression des doublons par ISBN/source, nombre de lignes apr\u00e8s : 271367", "module": "transformation"}
+[2026-03-27T16:43:11.081+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:43:11,077", "level": "INFO", "message": "Filtrage des 3 sources termin\u00e9", "module": "transformation"}
+[2026-03-27T16:43:35.853+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:43:35,849", "level": "INFO", "message": "Donn\u00e9es \u00e9crites dans MinIO (bucket processed) avec partition source/date_ajout", "module": "transformation"}
+[2026-03-27T16:43:36.439+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:43:36,434", "level": "INFO", "message": "Transformation termin\u00e9e avec succ\u00e8s sous Minio", "module": "transformation"}
+[2026-03-27T16:43:36.442+0000] {subprocess.py:93} INFO - {"time": "2026-03-27 16:43:36,434", "level": "INFO", "message": "{\"step\": \"run_transformation\", \"duration_sec\": 87.55147528648376}", "module": "etl_monitoring"}
+[2026-03-27T16:43:36.702+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-03-27T16:43:36.758+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=pipeline_ETL, task_id=transform_data, execution_date=20260327T163838, start_date=20260327T164153, end_date=20260327T164336
+[2026-03-27T16:43:36.812+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-27T16:43:36.843+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
